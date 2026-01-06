@@ -1,0 +1,31 @@
+name: 🚀 Deploy to production
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+
+jobs:
+    confirm-branch:
+        runs-on: ubuntu-latest
+        environment: Production
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 0
+
+            - name: Validated branch
+              id: check_main
+              run: |
+                TAG_COMMIT=$(git rev-list -n 1 "${{ github.ref }}")
+                MAIN_COMMIT=$(git rev-list -n 1 origin/main)
+
+                echo "Tag commit:  $TAG_COMMIT"
+                echo "Main commit: $MAIN_COMMIT"
+
+                if [ "$TAG_COMMIT" != "$MAIN_COMMIT" ]; then
+                    echo "❌ Tag is not created from the main branch"
+                    exit 1
+                fi
+
+                echo "✅ Tag is from the main branch"
