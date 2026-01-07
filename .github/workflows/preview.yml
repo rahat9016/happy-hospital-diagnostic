@@ -34,6 +34,5 @@ jobs:
             --token ${{ secrets.VERCEL_TOKEN }} \
             --scope rahat9016s-projects \
             --prod \
-            --confirm
             --yes
 
