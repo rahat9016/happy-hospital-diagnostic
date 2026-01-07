@@ -23,7 +23,7 @@ jobs:
       # Install dependencies
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-        
+
       # Run tests
       - name: Run tests
         run: yarn test || echo "No tests defined"
@@ -34,4 +34,3 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          scope: preview
