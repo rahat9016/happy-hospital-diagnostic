@@ -29,8 +29,10 @@ jobs:
         run: yarn test || echo "No tests defined"
       # Deploy to vercel preview
       - name: Deploy to vercel preview
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          npx vercel@50 deploy \
+            --token ${{ secrets.VERCEL_TOKEN }} \
+            --scope rahat9016s-projects \
+            --prod \
+            --yes
+
