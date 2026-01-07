@@ -35,4 +35,5 @@ jobs:
             --scope rahat9016s-projects \
             --prod \
             --confirm
+            --yes
 
