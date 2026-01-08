@@ -66,7 +66,8 @@ export default function Sidebar({
             </h3>
             <p className="font-inter text-xs sm:text-sm font-normal text-[#4D4D4D]">
               
-              {/* Disability Inclusion Resource Hub */}
+              {/* Happy Hospital & 
+Diagnostic Center  */}
             </p>
           </div>
         </div>
