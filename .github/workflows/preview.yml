@@ -33,6 +33,5 @@ jobs:
           npx vercel@50 deploy \
             --token ${{ secrets.VERCEL_TOKEN }} \
             --scope rahat9016s-projects \
-            --prod \
             --yes
 
