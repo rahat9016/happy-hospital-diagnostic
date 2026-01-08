@@ -1,6 +1,14 @@
+import InternetStatus from "@/src/components/InternetStatus";
+import Footer from "@/src/components/layout/rootLayout/Footer";
+import Header from "@/src/components/layout/rootLayout/Header";
 
-export default function layout() {
+export default function layout({ children }: { children: React.ReactNode }) {
   return (
-    <div>header</div>
-  )
+    <div>
+      <InternetStatus />
+      <Header />
+      {children}
+      <Footer />
+    </div>
+  );
 }

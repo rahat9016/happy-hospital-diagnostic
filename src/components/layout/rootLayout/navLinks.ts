@@ -1,9 +1,8 @@
 export const navLinks = [
-  { label: "home", href: "/" },
-  { label: "resources", href: "/resources" },
-  { label: "training", href: "/training" },
-  { label: "events", href: "/events" },
-  { label: "news", href: "/news" },
-  { label: "about", href: "/about" },
-  { label: "contact", href: "/contact" },
+  { label: "About Us", href: "/about-us" },
+  { label: "Doctor Appointment", href: "/doctor-appointment" },
+  { label: "Health Check", href: "/health-check" },
+  { label: "Specialties", href: "/specialties" },
+  { label: "Membership", href: "/membership" },
+  { label: "Contact Us", href: "/contact-us" },
 ];

@@ -1,20 +1,20 @@
 "use client";
 
+import hotlineIcon from "@/public/icons/hotline.png";
+import logo from "@/public/logo.png";
 import { useAppSelector } from "@/src/lib/redux/hooks";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ProfileDropdown } from "./ProfileDropdown";
 import { navLinks } from "./navLinks";
-
-
 const Header = () => {
   const {
     userInformation: { email },
   } = useAppSelector((state) => state.auth);
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
-
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -24,7 +24,7 @@ const Header = () => {
       document.body.style.overflow = "unset";
     }
 
-    // Cleanup function
+    
     return () => {
       document.body.style.overflow = "unset";
     };
@@ -33,55 +33,60 @@ const Header = () => {
   const normalizedPath = pathname.replace(/^\/(en|bn)(?=\/|$)/, "") || "/";
 
   return (
-    <header className="relative">
-      <div className="fixed w-full h-20 md:h-24 lg:h-40 bg-white z-50">
-        {/* 🔹 Top Black Accessibility Bar (Desktop only) */}
-        <div className="hidden lg:flex items-center w-full h-12 bg-pureBlack">
+    <header className="relative pb-40">
+      <div className="fixed w-full h-20 md:h-24 lg:h-40  z-50 ">
+        <div className="hidden lg:flex items-center w-full h-12 bg-secondary">
           <div
-            className="container px-4 sm:px-6 lg:px-8"
+            className="container flex items-center justify-between"
             aria-label="Nav bar"
             tabIndex={0}
           >
-            <div className="text-white text-xs sm:text-sm px-2 sm:px-4 py-2 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0">
-
-              {/* Right Links */}
-              <div className="flex flex-wrap justify-center sm:justify-end gap-2 sm:gap-4 items-center">
-                {/* <LanguageToggle /> */}
-                {/* <Link href="/accessibility">{t("accessibility")}</Link> */}
-                <Link href="/event-calendar">event Calendar</Link>
-                {/* <Link href="/privacy">{t("privacyPolicy")}</Link> */}
-                {email ? (
-                  <ProfileDropdown />
-                ) : (
-                  <Link href="/login">Login</Link>
-                )}
-              </div>
+            <h3 className="font-medium text-sm text-white">
+              Welcome to happy hospital & diagnostic center
+            </h3>
+            <div className="flex items-center gap-6 text-white text-base font-normal">
+              <Link href={"/career"}>Career</Link>
+              <Link href={"/blogs"}>Blogs</Link>
+              <Link href={""} className="flex items-center gap-2">
+                <Image
+                  src={hotlineIcon}
+                  width={52}
+                  height={62}
+                  alt="hotline:16254"
+                  className="w-6 h-6"
+                />
+                Hotline: 16254
+              </Link>
             </div>
           </div>
         </div>
 
-        {/* 🔹 Main White Navbar */}
         <div className="h-20 md:h-24 lg:h-28 shadow-lg flex items-center relative">
           <div className="container flex items-center justify-between">
-            {/* Logo */}
             <div className="flex items-center gap-3 sm:gap-5">
               <Link
                 href="/"
-                aria-label="Disability Inclusion Resource Hub"
-                className="shrink-0"
+                aria-label="Happy Hospital & 
+Diagnostic Center "
+                className="shrink-0 flex items-center"
               >
-                <h2 className="font-inter text-base sm:text-lg text-[#0077CC] font-bold leading-tight">
-                  Disability Inclusion
-                  <br /> Resource Hub
+                <Image
+                  src={logo}
+                  alt="Happy Hospital & 
+Diagnostic Center"
+                  width={216}
+                  height={216}
+                  className="w-24 h-24"
+                />
+                <h2 className="text-base text-secondary font-semibold">
+                  Happy Hospital &<br />
+                  Diagnostic Center 
                 </h2>
-                <p className="font-inter font-medium text-xs sm:text-sm text-[#666666]">
-                  Bangladesh
-                </p>
               </Link>
             </div>
 
             {/* Desktop Nav */}
-            <nav className="hidden lg:flex font-normal divide-x divide-gray-300 text-sm">
+            <nav className="flex items-center">
               {navLinks.map(({ label, href }) => {
                 const isActive =
                   href === "/"
@@ -91,15 +96,15 @@ const Header = () => {
                   <Link
                     key={label}
                     href={href}
-                    className="group relative pb-1 px-2"
+                    className="group relative pb-1 px-2 font-normal text-base text-secondary-foreground"
                   >
                     <div className="px-2 sm:px-4">
                       <span
-                        className={`whitespace-nowrap ${
-                          isActive
-                            ? "text-primary font-medium"
-                            : "text-[#666666]"
-                        }`}
+                      // className={`whitespace-nowrap ${
+                      //   isActive
+                      //     ? "text-primary font-medium"
+                      //     : "text-[#666666]"
+                      // }`}
                       >
                         {label}
                       </span>
@@ -114,6 +119,12 @@ const Header = () => {
                   </Link>
                 );
               })}
+              <Link
+                href={""}
+                className="bg-primary hover:bg-primary/80 text-white text-base font-medium rounded-sm text-center px-6 py-4"
+              >
+                Online Report
+              </Link>
             </nav>
           </div>
         </div>
@@ -162,8 +173,6 @@ const Header = () => {
               <Link href="/accessibility" onClick={() => setMobileOpen(false)}>
                 accessibility
               </Link>
-
-              
             </div>
           </div>
           <hr className="border-gray-200" />
